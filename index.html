@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!--  viewport meta 标签 -->
+    <meta name="viewport"
+          content="width-device-width,initial-scale=1.0,maximum-scale=1.0, minimum-scale=1.0,user-scalable=no, minimal-ui">
+
+    <title>MPlayer</title>
+
+    <style scoped>
+        *, *:before, *:after {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+        }
+
+        .title_btn {
+            background-color: aqua;
+            width: 100%;
+            text-align: center;
+        }
+
+        .Player {
+            display: flex;
+            width: 100%;
+            height: 100vh;
+        }
+
+        .Player::before {
+            width: 100%;
+            height: 100vh;
+            position: absolute;
+            top: 0;
+            left: 0;
+            background: transparent url("images/bgimg1.jpg") center center no-repeat;
+            filter: blur(5px);
+            background-size: cover;
+            z-index: -1;
+        }
+
+
+        .Player_right {
+            height: 100vh;
+            width: 30%;
+            border: 1px solid;
+            border-color: #ffff;
+            -moz-border-radius: 25px; /* Old Firefox */
+            background-color: red;
+        }
+
+        .photo_pic {
+            position: relative;
+            width: 250px;
+            height: 250px;
+            margin: 75px auto 0;
+            border-radius: 50%;
+            background: url("images/Eason1.jpg");
+            background-size: 250px, cover;
+            box-shadow: 0 0 2px #666, 0 0 10px #666;
+        }
+
+        .Player_left {
+            height: 100vh;
+            width: 70%;
+            border: 1px solid;
+            border-color: #ffff;
+            -moz-border-radius: 25px; /* Old Firefox */
+            background-color: greenyellow;
+        }
+
+        /*控制台*/
+        .control {
+            background-color: aqua;
+            height: 5vh;
+            width: 100%;
+            /*text-align: center;*/
+            display: flex;
+        }
+
+        /*进度条*/
+        .progress_obj time {
+            float: right;
+        }
+
+        .progress_bar {
+            position: relative;
+            width: 80vw;
+            height: 2px;
+            background-color: #fff;
+            float: left;
+            cursor: pointer;
+        }
+
+        .volume {
+            position: relative;
+            width: 10vw;
+            height: 2px;
+            background-color: #fff;
+            float: left;
+            cursor: pointer;
+        }
+
+        .volume_button {
+            display: flex;
+            text-align: center;
+        }
+
+        .volume {
+            position: relative;
+            width: 70px;
+            float: right;
+            height: 2px;
+            background-color: #fff;
+            margin-top: 13px;
+        }
+
+        .song_list li {
+            display: flex;
+        }
+
+        .lyrics_book {
+            text-align: center;
+        }
+        .control_btn{
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<!--header-->
+<header class="title_btn">
+    <span>MPlayer在线播放器</span>
+</header>
+<!--content-->
+<div class="Player">
+    <!--左 歌单-->
+    <div class="Player_left">
+        <!--歌单按钮选择-->
+        <div>
+            <button>正在播放</button>
+            <button>排行榜</button>
+            <button>搜索</button>
+            <button>我的歌单</button>
+            <button>我听过的</button>
+        </div>
+
+        <!--歌单内容-->
+        <div class="control_btn">
+            <!--歌曲、歌手、时长-->
+            <div>
+                <spna>歌曲</spna>
+                <spna>歌手</spna>
+                <spna>时长</spna>
+            </div>
+            <!-- 歌曲列表-->
+            <div class="song_list">
+                <ol>
+                    <li>
+                        <p>两只老虎</p>
+                        <p>卢本伟</p>
+                        <p>00:00</p>
+                    </li>
+                    <li>
+                        <p>两只老虎</p>
+                        <p>卢本伟</p>
+                        <p>00:00</p>
+                    </li>
+                </ol>
+            </div>
+        </div>
+
+    </div>
+
+    <!--右 播放-->
+    <div class="Player_right">
+        <!--旋转光碟-->
+        <div class="photo_pic" id="photo_pic">
+            <div class="cd"></div>
+        </div>
+
+        <div class="lyrics_book">
+            <div>
+                <p>歌曲名：<span>俩只老虎</span></p>
+                <p>歌曲名：<span>俩只老虎</span></p>
+                <p>歌曲名：<span>俩只老虎</span></p>
+            </div>
+
+            <!--歌曲-->
+            <div>
+                <p>这是歌词</p>
+            </div>
+        </div>
+
+
+    </div>
+</div>
+
+
+<!--控制台-->
+<div class="control">
+    <!--上|暂停|下-->
+    <div>
+        <button class="prev_btn">上</button>
+        <button class="prev_btn">播放</button>
+        <button class="prev_btn">下</button>
+    </div>
+    <!--进度条-->
+    <div class="progress_obj">
+        <div>
+            <span>歌手—歌曲</span>
+            <time>03:52</time>
+        </div>
+        <div class="progress_bar"></div>
+    </div>
+
+    <!--列表|音量-->
+    <div class="volume_button ">
+        <!-- 列表-->
+        <div>
+            <button>歌曲列表</button>
+        </div>
+        <!--音量-->
+        <div class="volume"></div>
+    </div>
+</div>
+</body>
+<script>
+
+</script>
+</html>
+
+
