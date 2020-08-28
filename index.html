@@ -1,248 +1,232 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
-    <!--  viewport meta 标签 -->
-    <meta name="viewport"
-          content="width-device-width,initial-scale=1.0,maximum-scale=1.0, minimum-scale=1.0,user-scalable=no, minimal-ui">
-
+    <!-- import CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
     <title>MPlayer</title>
-
-    <style scoped>
-        *, *:before, *:after {
-            -webkit-box-sizing: border-box;
-            -moz-box-sizing: border-box;
-            box-sizing: border-box;
-        }
-
-        .title_btn {
-            background-color: aqua;
-            width: 100%;
-            text-align: center;
-        }
-
-        .Player {
+    <style type="text/less" scoped>
+        .el-header {
+            background-color: #31c27c;
+            color: #333;
+            line-height: 60px;
+            font-size: 12px;
             display: flex;
-            width: 100%;
-            height: 100vh;
-        }
+            align-items: center;
+            justify-content: flex-end;
 
-        .Player::before {
-            width: 100%;
-            height: 100vh;
-            position: absolute;
-            top: 0;
-            left: 0;
-            background: transparent url("images/bgimg1.jpg") center center no-repeat;
-            filter: blur(5px);
-            background-size: cover;
-            z-index: -1;
-        }
-
-
-        .Player_right {
-            height: 100vh;
-            width: 30%;
-            border: 1px solid;
-            border-color: #ffff;
-            -moz-border-radius: 25px; /* Old Firefox */
-            background-color: red;
-        }
-
-        .photo_pic {
-            position: relative;
-            width: 250px;
-            height: 250px;
-            margin: 75px auto 0;
-            border-radius: 50%;
-            background: url("images/Eason1.jpg");
-            background-size: 250px, cover;
-            box-shadow: 0 0 2px #666, 0 0 10px #666;
-        }
-
-        .Player_left {
-            height: 100vh;
-            width: 70%;
-            border: 1px solid;
-            border-color: #ffff;
-            -moz-border-radius: 25px; /* Old Firefox */
-            background-color: greenyellow;
-        }
-
-        /*控制台*/
-        .control {
-            background-color: aqua;
-            height: 5vh;
-            width: 100%;
-            /*text-align: center;*/
-            display: flex;
-        }
-
-        /*进度条*/
-        .progress_obj time {
-            float: right;
-        }
-
-        .progress_bar {
-            position: relative;
-            width: 80vw;
-            height: 2px;
-            background-color: #fff;
-            float: left;
-            cursor: pointer;
-        }
-
-        .volume {
-            position: relative;
-            width: 10vw;
-            height: 2px;
-            background-color: #fff;
-            float: left;
-            cursor: pointer;
-        }
-
-        .volume_button {
-            display: flex;
-            text-align: center;
-        }
-
-        .volume {
-            position: relative;
-            width: 70px;
-            float: right;
-            height: 2px;
-            background-color: #fff;
-            margin-top: 13px;
-        }
-
-        .song_list li {
-            display: flex;
-        }
-
-        .lyrics_book {
-            text-align: center;
-        }
-
-        .control_btn {
-            text-align: center;
-        }
-
-        /*Wap*/
-        @media (max-width: 640px) {
-            .photo_pic{
-                width: 100px;
-                height: 100px;
+            .el-avatar {
+                display: flex;
+                margin-right: 15px;
             }
-            .Player_right{
-                display: none;
+            .el-menu-demo{
+                margin-right: 50px;
             }
-            .Player_left{
-                width: 100% ;
-            }
+        }
+
+        .el-footer {
+            background-color: #B3C0D1;
+            color: #333;
+            text-align: center;
+            line-height: 60px;
+        }
+
+        .el-aside {
+            background-color: #D3DCE6;
+            color: #333;
+            text-align: center;
+            line-height: 200px;
+        }
+
+        .el-main {
+            background-color: #E9EEF3;
+            color: #333;
+            text-align: center;
+            /*line-height: 160px;*/
+        }
+
+        body > .el-container {
+            margin-bottom: 80px;
+        }
+
+        .el-container:nth-child(5) .el-aside,
+        .el-container:nth-child(6) .el-aside {
+            line-height: 260px;
+        }
+
+        .el-container:nth-child(7) .el-aside {
+            line-height: 320px;
         }
     </style>
 </head>
 <body>
-<!--header-->
-<header class="title_btn">
-    <span>MPlayer在线播放器</span>
-</header>
-<!--content-->
-<div class="Player">
-    <!--左 歌单-->
-    <div class="Player_left">
-        <!--歌单按钮选择-->
-        <div>
-            <button>正在播放</button>
-            <button>排行榜</button>
-            <button>搜索</button>
-            <button>我的歌单</button>
-            <button>我听过的</button>
-        </div>
+<div id="app">
+    <el-container style="height: 100vh; border: 1px solid #eee">
+        <el-aside width="200px" style="background-color: #D3DCE6;">
+            <el-menu :default-openeds="['1', '3']">
+                <el-submenu index="1">
+                    <template slot="title"><i class="el-icon-headset"></i>在线音乐</template>
+                    <el-menu-item-group>
+                        <template slot="title">分组一</template>
+                        <el-menu-item index="1-1">选项1</el-menu-item>
+                        <el-menu-item index="1-2">选项2</el-menu-item>
+                    </el-menu-item-group>
+                    <el-menu-item-group title="分组2">
+                        <el-menu-item index="1-3">选项3</el-menu-item>
+                    </el-menu-item-group>
+                    <el-submenu index="1-4">
+                        <template slot="title">选项4</template>
+                        <el-menu-item index="1-4-1">选项4-1</el-menu-item>
+                    </el-submenu>
+                </el-submenu>
+                <el-submenu index="2">
+                    <template slot="title"><i class="el-icon-user"></i>我的音乐</template>
+                    <el-menu-item-group>
+                        <template slot="title">分组一</template>
+                        <el-menu-item index="2-1">选项1</el-menu-item>
+                        <el-menu-item index="2-2">选项2</el-menu-item>
+                    </el-menu-item-group>
+                    <el-menu-item-group title="分组2">
+                        <el-menu-item index="2-3">选项3</el-menu-item>
+                    </el-menu-item-group>
+                    <el-submenu index="2-4">
+                        <template slot="title">选项4</template>
+                        <el-menu-item index="2-4-1">选项4-1</el-menu-item>
+                    </el-submenu>
+                </el-submenu>
+                <el-submenu index="3">
+                    <template slot="title"><i class="el-icon-setting"></i>其他</template>
+                    <el-menu-item-group>
+                        <template slot="title">分组一</template>
+                        <el-menu-item index="3-1">选项1</el-menu-item>
+                        <el-menu-item index="3-2">选项2</el-menu-item>
+                    </el-menu-item-group>
+                    <el-menu-item-group title="分组2">
+                        <el-menu-item index="3-3">选项3</el-menu-item>
+                    </el-menu-item-group>
+                    <el-submenu index="3-4">
+                        <template slot="title">选项4</template>
+                        <el-menu-item index="3-4-1">选项4-1</el-menu-item>
+                    </el-submenu>
+                </el-submenu>
+            </el-menu>
+        </el-aside>
+        <el-container>
+            <el-header>
+                <!--头部导航菜单-->
+                <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleMenu"
+                         background-color="#31c27c" text-color="#3f3f3f" active-text-color="#ffdc00">
+                    <el-menu-item index="1">排行榜</el-menu-item>
+                    <el-submenu index="2">
+                        <template slot="title">发现音乐</template>
+                        <el-menu-item index="2-1">推荐</el-menu-item>
+                        <el-menu-item index="2-2">歌单</el-menu-item>
+                        <el-menu-item index="2-3">MV</el-menu-item>
+                    </el-submenu>
+                    <el-menu-item index="3">VIP</el-menu-item>
+                    <el-menu-item index="4" disabled>求打赏</el-menu-item>
+                </el-menu>
+                <!-- 搜索-->
+                <el-row class="demo-autocomplete">
+                    <el-col :span="12">
+                        <el-autocomplete
+                                class="inline-input"
+                                v-model="state"
+                                :fetch-suggestions="querySearch"
+                                placeholder="音乐/明星"
+                                @select="handleSelect"
+                        ></el-autocomplete>
+                    </el-col>
+                </el-row>
+                <!--头像、用户名-->
+                <el-dropdown>
+                    <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"></el-avatar>
+                    <el-dropdown-menu slot="dropdown">
+                        <el-dropdown-item>我的主页</el-dropdown-item>
+                        <el-dropdown-item>vip会员</el-dropdown-item>
+                        <el-dropdown-item>退出</el-dropdown-item>
+                    </el-dropdown-menu>
+                </el-dropdown>
+                <span>王小虎</span>
+            </el-header>
 
-        <!--歌单内容-->
-        <div class="control_btn">
-            <!--歌曲、歌手、时长-->
-            <div>
-                <spna>歌曲</spna>
-                <spna>歌手</spna>
-                <spna>时长</spna>
-            </div>
-            <!-- 歌曲列表-->
-            <div class="song_list">
-                <ol>
-                    <li>
-                        <p>两只老虎</p>
-                        <p>卢本伟</p>
-                        <p>00:00</p>
-                    </li>
-                    <li>
-                        <p>两只老虎</p>
-                        <p>卢本伟</p>
-                        <p>00:00</p>
-                    </li>
-                </ol>
-            </div>
-        </div>
+            <el-main>
+                <el-table :data="tableData">
 
-    </div>
-
-    <!--右 播放-->
-    <div class="Player_right">
-        <!--旋转光碟-->
-        <div class="photo_pic" id="photo_pic">
-            <div class="cd"></div>
-        </div>
-
-        <div class="lyrics_book">
-            <div>
-                <p>歌曲名：<span>俩只老虎</span></p>
-                <p>歌曲名：<span>俩只老虎</span></p>
-                <p>歌曲名：<span>俩只老虎</span></p>
-            </div>
-
-            <!--歌曲-->
-            <div>
-                <p>这是歌词</p>
-            </div>
-        </div>
+                    <el-table-column prop="name" label="歌手" width="120">
+                    </el-table-column>
+                    <el-table-column prop="address" label="歌曲">
+                    </el-table-column>
+                    <el-table-column prop="date" label="时长" width="140">
+                    </el-table-column>
+                </el-table>
+            </el-main>
 
 
-    </div>
-</div>
-
-
-<!--控制台-->
-<div class="control">
-    <!--上|暂停|下-->
-    <div>
-        <button class="prev_btn">上</button>
-        <button class="prev_btn">播放</button>
-        <button class="prev_btn">下</button>
-    </div>
-    <!--进度条-->
-    <div class="progress_obj">
-        <div>
-            <span>歌手—歌曲</span>
-            <time>03:52</time>
-        </div>
-        <div class="progress_bar"></div>
-    </div>
-
-    <!--列表|音量-->
-    <div class="volume_button ">
-        <!-- 列表-->
-        <div>
-            <button>歌曲列表</button>
-        </div>
-        <!--音量-->
-        <div class="volume"></div>
-    </div>
+            <el-footer>Footer</el-footer>
+        </el-container>
+    </el-container>
 </div>
 </body>
-<script>
 
+<script src="javascript/vue.min.js"></script>
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/less.js/2.5.3/less.min.js"></script>
+
+<script>
+    var Main = {
+        //数据
+        data() {
+            const item = {
+                date: '03:33',
+                name: '孙燕姿',
+                address: '遇见'
+            };
+            return {
+                tableData: Array(20).fill(item),
+                state: '', //v-model 绑定搜索输入框
+                restaurants: [],//搜索返回的数组
+                activeIndex: '1', //头部导航菜单 选中索引？
+            }
+        },
+        //方法
+        methods: {
+            querySearch(queryString, cb) {
+                var restaurants = this.restaurants;
+                var results = queryString ? restaurants.filter(this.createFilter(queryString)) : restaurants;
+                // 调用 callback 返回建议列表的数据
+                cb(results);
+            },
+            createFilter(queryString) {
+                return (restaurant) => {
+                    return (restaurant.value.toLowerCase().indexOf(queryString.toLowerCase()) === 0);
+                };
+            },
+            loadAll() {
+                return [
+                    {"value": "周杰伦"},
+                    {"value": "梁静茹"},
+                    {"value": "林俊杰"},
+                    {"value": "王力宏"},
+                    {"value": "五月天"},
+                    {"value": "孙燕姿"},
+                ];
+            },
+            //点击推荐明星或音乐
+            handleSelect(item) {
+                console.log(item);
+            },
+            //点击选择的头部导航菜单
+            handleMenu(key, keyPath) {
+                console.log(key, keyPath);
+            },
+        },
+        //计算属性
+        mounted() {
+            this.restaurants = this.loadAll();
+        }
+    };
+    var Ctor = Vue.extend(Main)
+    new Ctor().$mount('#app')
 </script>
 </html>
-
-
